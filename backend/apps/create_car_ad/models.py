@@ -5,12 +5,12 @@ from django.db import models
 
 from core_app.models import BaseModel
 
-from apps.create_car_application.choices import BrandChoice, ModelChoice
+from apps.create_car_ad.choices import BrandChoice, ModelChoice
 
 
-class CarApplicationModel(BaseModel):
+class CarAdModel(BaseModel):
     class Meta:
-        db_table = 'car_application'
+        db_table = 'cars_ad'
 
     brand = models.CharField(max_length=20, choices=BrandChoice.choices)
     model = models.CharField(max_length=20, choices=ModelChoice.choices)

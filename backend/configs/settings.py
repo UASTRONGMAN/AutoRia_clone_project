@@ -37,11 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
 
     #my apps
     'core_app',
     'apps.users',
-    'apps.create_car_application',
+    'apps.auth',
+    'apps.create_car_ad',
 ]
 
 MIDDLEWARE = [
