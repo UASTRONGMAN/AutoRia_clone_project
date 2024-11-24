@@ -4,6 +4,7 @@ from django.db import models
 
 from core_app.models import BaseModel
 
+from apps.create_car_ad.models import CarAdModel
 from apps.users.managers import UserManager
 from apps.users.regex import ProfileRegex
 
