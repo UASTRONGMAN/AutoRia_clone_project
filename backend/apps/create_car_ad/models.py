@@ -1,10 +1,10 @@
 from datetime import datetime
 
-# from django.contrib.auth import get_user_model
 from django.core import validators as V
 from django.db import models
 
-# from core_app.dataclasses.user_dataclass import User
+from configs.settings import AUTH_USER_MODEL
+
 from core_app.models import BaseModel
 
 from apps.create_car_ad.choices import (
@@ -15,10 +15,6 @@ from apps.create_car_ad.choices import (
     FuelTypeChoice,
     ModelChoice,
 )
-
-# from apps.users.models import UserModel
-
-# UserModel: User = get_user_model()
 
 
 class CarAdModel(BaseModel):
@@ -35,6 +31,6 @@ class CarAdModel(BaseModel):
     drive_type = models.CharField(max_length=29, choices=DriveTypeChoice.choices)
     region = models.CharField(max_length=50)
     description = models.TextField(blank=True)
-    # user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='cars')
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cars')
     # photo = models.ImageField(blank=True, null=True)
 
