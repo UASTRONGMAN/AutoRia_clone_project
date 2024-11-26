@@ -16,7 +16,7 @@ class BrandChoice(models.TextChoices):
 class ModelChoice(models.TextChoices):
     M8 = 'M8'
     M30 = 'M3'
-    RSQ5 = 'RSQ5'
+    RSQ7 = 'RSQ7'
     Q8 = 'Q8'
     Brabus = 'Brabus'
     CLS350 = 'CLS350'

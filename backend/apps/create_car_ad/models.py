@@ -15,6 +15,7 @@ from apps.create_car_ad.choices import (
     FuelTypeChoice,
     ModelChoice,
 )
+from apps.create_car_ad.services import upload_car_photo
 
 
 class CarAdModel(BaseModel):
@@ -32,5 +33,5 @@ class CarAdModel(BaseModel):
     region = models.CharField(max_length=50)
     description = models.TextField(blank=True)
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cars')
-    # photo = models.ImageField(blank=True, null=True)
+    photo = models.ImageField(upload_to=upload_car_photo, blank=True)
 
