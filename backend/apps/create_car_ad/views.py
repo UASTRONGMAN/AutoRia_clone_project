@@ -33,19 +33,21 @@ class CarRetrieveView(RetrieveAPIView):
     permission_classes = (AllowAny,)
 
 class CarAdUpdateDestroyView(UpdateAPIView, DestroyAPIView):
-    serializer_class = CarAdSerializer
     queryset = CarAdModel.objects.all()
     permission_classes = (IsAuthenticated, )
 
-class CarAddPhotoView(UpdateAPIView):
+class CarAddPhotosView(GenericAPIView):
     permission_classes = (IsAuthenticated, )
     serializer_class = CarPhotoSerializer
     queryset = CarAdModel.objects.all()
-    http_method_names = ['put']
 
-    def perform_update(self, serializer):
+    def put(self, *args, **kwargs):
+        files = self.request.FILES
         car = self.get_object()
-        car.photo.delete()
-        super().perform_update(serializer)
-
-
+        for index in files:
+            serializer = CarPhotoSerializer(data={'photo': files[index]})
+            serializer.is_valid(raise_exception=True)
+            serializer.save(car=car)
+        car_serializer = CarAdSerializer(car)
+        return Response(car_serializer.data, status=status.HTTP_200_OK)
+        

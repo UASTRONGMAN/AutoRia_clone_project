@@ -33,5 +33,12 @@ class CarAdModel(BaseModel):
     region = models.CharField(max_length=50)
     description = models.TextField(blank=True)
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cars')
+
+class CarPhotoModel(BaseModel):
+    class Meta:
+        db_table = 'car_photos'
+
     photo = models.ImageField(upload_to=upload_car_photo, blank=True)
+    car = models.ForeignKey(CarAdModel, on_delete=models.CASCADE, related_name='photos')
+
 

@@ -2,7 +2,7 @@ from django.urls import path
 
 from apps.create_car_ad.views import (
     CarAdCreateView,
-    CarAddPhotoView,
+    CarAddPhotosView,
     CarAdUpdateDestroyView,
     CarListView,
     CarRetrieveView,
@@ -14,5 +14,5 @@ urlpatterns = [
 
     path('/<int:pk>', CarRetrieveView.as_view(), name='car-retrieve'),
     path('/<int:pk>/change_ad', CarAdUpdateDestroyView.as_view(), name='car-update-destroy'),
-    path('/<int:pk>/add_photo', CarAddPhotoView.as_view(), name='car-add-photo'),
+    path('/<int:pk>/add_photos', CarAddPhotosView.as_view(), name='car-add-photos'),
 ]
