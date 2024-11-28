@@ -25,7 +25,7 @@ class CarAdCreateView(GenericAPIView):
             serializer.save(user=user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         elif not user.is_premium_user and user.cars.count() == 1:
-            return Response('Your ability to create car ads has already been exhausted. If you want to create more than one ad, you have to buy premium status of user.')
+            return Response({"detail": "Your ability to create car ads has already been exhausted. If you want to create more than one ad, you have to buy premium status of user."})
 
 class CarRetrieveView(RetrieveAPIView):
     queryset = CarAdModel.objects.all()
