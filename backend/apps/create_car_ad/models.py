@@ -33,6 +33,8 @@ class CarAdModel(BaseModel):
     region = models.CharField(max_length=50)
     description = models.TextField(blank=True)
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cars')
+    is_active_ad = models.BooleanField(default=False)
+    check_count = models.IntegerField(default=0)
 
 class CarPhotoModel(BaseModel):
     class Meta:
@@ -40,5 +42,6 @@ class CarPhotoModel(BaseModel):
 
     photo = models.ImageField(upload_to=upload_car_photo, blank=True)
     car = models.ForeignKey(CarAdModel, on_delete=models.CASCADE, related_name='photos')
+
 
 

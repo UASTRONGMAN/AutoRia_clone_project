@@ -36,7 +36,7 @@ class JWTService:
             token_res = token_class(token)
             token_res.check_blacklist()
         except Exception:
-            return JWTException
+            raise JWTException
 
         token_res.blacklist()
         user_id = token_res.payload.get('user_id')
