@@ -5,10 +5,10 @@ import UserPage from "./pages/UserPage";
 import CarPage from "./pages/CarPage";
 
 export const router = createBrowserRouter([
-    {path:'/', element:<MainLayout/>, children:[
+    {path:'', element:<MainLayout/>, children:[
             {index:true, element:<Navigate to={'cars'}/>},
             {path:'cars', element:<CarPage/>},
             {path:'auth', element:<AuthPage/>},
-            {path:'register', element:<UserPage/>}
+            {path:'users', element:<UserPage/>}
         ]}
 ])

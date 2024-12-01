@@ -10,7 +10,7 @@ from apps.create_car_ad.views import (
 )
 
 urlpatterns = [
-    path('', CarListView.as_view(), name='car-list-create'),
+    path('', CarListView.as_view(), name='car-list'),
     path('/create_ad', CarAdCreateView.as_view(), name='car-application-create'),
 
     path('/<int:pk>', CarRetrieveView.as_view(), name='car-retrieve'),

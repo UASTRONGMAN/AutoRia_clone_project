@@ -13,8 +13,8 @@ const AuthPage = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(login)}>
-                <input type="text" placeholder={'Email'} {...register('Email')}/>
-                <input type="text" placeholder={'Password'} {...register('Password')}/>
+                <input type="text" placeholder={'email'} {...register('email')}/>
+                <input type="text" placeholder={'password'} {...register('password')}/>
                 <button>login</button>
             </form>
             Don't have an account yet? <a href={urls.register}>Create.</a>
