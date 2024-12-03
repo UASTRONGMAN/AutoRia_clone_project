@@ -17,7 +17,7 @@ const AuthPage = () => {
                 <input type="text" placeholder={'password'} {...register('password')}/>
                 <button>login</button>
             </form>
-            Don't have an account yet? <a href={urls.register}>Create.</a>
+            Don't have an account yet? <a href={urls.users.register}>Create.</a>
         </div>
     );
 };

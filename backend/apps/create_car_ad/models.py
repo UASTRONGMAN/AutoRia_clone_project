@@ -1,9 +1,12 @@
 from datetime import datetime
 
+from django.contrib.contenttypes.fields import GenericRelation
 from django.core import validators as V
 from django.db import models
 
 from configs.settings import AUTH_USER_MODEL
+from hitcount.models import HitCountMixin
+from hitcount.settings import MODEL_HITCOUNT
 
 from core_app.models import BaseModel
 
@@ -18,7 +21,7 @@ from apps.create_car_ad.choices import (
 from apps.create_car_ad.services import upload_car_photo
 
 
-class CarAdModel(BaseModel):
+class CarAdModel(BaseModel, HitCountMixin):
     class Meta:
         db_table = 'cars_ad'
 
@@ -35,6 +38,10 @@ class CarAdModel(BaseModel):
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cars')
     is_active_ad = models.BooleanField(default=False)
     check_count = models.IntegerField(default=0)
+
+    hit_count_generic = GenericRelation(
+        MODEL_HITCOUNT, object_id_field='object_pk', related_query_name='hit_count_generic_relation'
+    )
 
 class CarPhotoModel(BaseModel):
     class Meta:

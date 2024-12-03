@@ -1,6 +1,5 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
-import {urls} from "../constants/urls";
 import {registrationService} from "../services/registrationService";
 
 const UserPage = () => {

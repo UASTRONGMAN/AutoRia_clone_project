@@ -22,16 +22,16 @@ class EmailService:
         msg.attach_alternative(html_content, "text/html")
         msg.send()
 
-    # @classmethod
-    # def register(cls, user:User):
-    #     token = JWTService.create_token(user, UserActivationToken)
-    #     url = f'http://localhost:3000/activate/{token}'
-    #     cls.__send_email.delay(
-    #         user.email,
-    #         'activate_user.html',
-    #         {'name':user.profile.name, 'url':url},
-    #         'Finish your registration'
-    #     )
+    @classmethod
+    def register(cls, user:User):
+        token = JWTService.create_token(user, UserActivationToken)
+        url = f'http://localhost:3000/activate/{token}'
+        cls.__send_email.delay(
+            user.email,
+            'activate_user.html',
+            {'name':user.profile.name, 'url':url},
+            'Finish your registration'
+        )
 
     @classmethod
     def recovery_password(cls, user:User):
