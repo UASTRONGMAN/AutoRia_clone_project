@@ -11,17 +11,32 @@ UserModel = get_user_model()
 
 
 class UsersCreateView(CreateAPIView):
+
+    """
+    Реєстрація користувача.
+    """
+
     serializer_class = UserSerializer
     permission_classes = (AllowAny, )
     pagination_class = None
 
 class UsersListView(ListAPIView):
+
+    """
+    Вивід всіх зареєстрованих користувачів.
+    """
+
     queryset = UserModel.objects.select_related('profile').all()
     serializer_class = UserSerializer
     permission_classes = (IsAdminUser, )
     pagination_class = None
 
 class UsersBanView(GenericAPIView):
+
+    """
+    Бан користувача.
+    """
+
     queryset = UserModel.objects.select_related('profile').all()
     permission_classes = (IsAdminUser, )
 
@@ -37,6 +52,10 @@ class UsersBanView(GenericAPIView):
         return Response(serializer.data ,status=status.HTTP_200_OK)
 
 class UsersUnbanView(GenericAPIView):
+    """
+    Розбан користувача.
+    """
+
     queryset = UserModel.objects.select_related('profile').all()
     permission_classes = (IsAdminUser,)
 
@@ -53,6 +72,11 @@ class UsersUnbanView(GenericAPIView):
 
 
 class CreateAdminUserView(GenericAPIView):
+
+    """
+    Надання прав адміністратора.
+    """
+
     queryset = UserModel.objects.select_related('profile').all()
     permission_classes = (IsAdminUser,)
 
@@ -69,6 +93,11 @@ class CreateAdminUserView(GenericAPIView):
 
 
 class CancelAdminUserView(GenericAPIView):
+
+    """
+    Відміна прав адміністратора.
+    """
+
     queryset = UserModel.objects.select_related('profile').all()
     permission_classes = (IsAdminUser,)
 
@@ -84,6 +113,11 @@ class CancelAdminUserView(GenericAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class BecomePremiumUserView(GenericAPIView):
+
+    """
+    Набування авторизованим користувачем преміум статусу.
+    """
+
     permission_classes = (IsAuthenticated, )
 
     def patch(self, *args, **kwargs):

@@ -18,6 +18,7 @@ from apps.create_car_ad.choices import (
     FuelTypeChoice,
     ModelChoice,
 )
+from apps.create_car_ad.regex import CarAdRegex
 from apps.create_car_ad.services import upload_car_photo
 
 
@@ -28,7 +29,7 @@ class CarAdModel(BaseModel, HitCountMixin):
     brand = models.CharField(max_length=20, choices=BrandChoice.choices)
     model = models.CharField(max_length=20, choices=ModelChoice.choices)
     year = models.IntegerField(validators=[V.MinValueValidator(1900), V.MaxValueValidator(datetime.now().year)])
-    price = models.IntegerField(validators=[V.MinValueValidator(0), V.MaxValueValidator(1_000_000_000)])
+    price = models.CharField(validators=[V.RegexValidator(*CarAdRegex.PRICE.value)], help_text="Acceptable input options: 10 UAH or 100 USD or 100.50 EUR", max_length=20)
     color = models.CharField(max_length=12, choices=ColorChoice.choices)
     body_type = models.CharField(max_length=13, choices=BodyTypeChoice.choices)
     fuel_type = models.CharField(max_length=15, choices=FuelTypeChoice.choices)

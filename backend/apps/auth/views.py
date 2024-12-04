@@ -15,6 +15,11 @@ from apps.users.serializers import UserSerializer
 UserModel: User = get_user_model()
 
 class UserActivationView(GenericAPIView):
+
+    """
+    Активація користувача через пошту.
+    """
+
     permission_classes = (AllowAny,)
 
     def patch(self, *args, **kwargs):
@@ -27,6 +32,10 @@ class UserActivationView(GenericAPIView):
 
 
 class RecoveryPasswordRequestView(GenericAPIView):
+    """
+    Запит на відновлення пароля через пошту.
+    """
+
     permission_classes = (AllowAny,)
     serializer_class = EmailSerializer
 
@@ -39,6 +48,10 @@ class RecoveryPasswordRequestView(GenericAPIView):
         return Response(status=status.HTTP_200_OK)
 
 class RecoveryPasswordView(GenericAPIView):
+    """
+    Створення нового паролю.
+    """
+
     permission_classes = (AllowAny,)
     serializer_class = PasswordSerializer
 
